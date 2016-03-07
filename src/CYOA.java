@@ -3,321 +3,101 @@ import java.util.Scanner;
 public class CYOA
 {
 	public static void main (String args[])
-	{
+	{	
+		String passOrRun;
+		int chance;
+		int scoreHome = 0;
 		
-		int recordW;
-		recordW = 0;
-		int recordL;
-		recordL = 0;
-		String player;
+		Player Rodgers = new Player("Aaron Rodgers", 12, 99);
+		Player Nelson = new Player("Jordy Nelson", 87, 93);
+		Player Lacy = new Player("Eddie Lacy", 27, 90);
 		
-		System.out.println("Congratulations! Following Aaron Rodgers' retirement, you are now the starting quarterback for the Green Bay Packers!");
-		System.out.println("Every football game has one defining play that will determine whether you win or lose.");
-		System.out.println("Be sure to type the name of the player you choose exactly as it's displayed or you will lose that week for sure!");
-		System.out.println("With some smart decision-making and a little luck, you will hopefully guide your team to a winning record and the post-season!");
-		System.out.println("Let's get started rookie!");
+		Player Cutler = new Player("Jay Cutler", 6, 79);
+		Player Jeffery = new Player("Alshon Jeffery", 17, 90);
+		Player Forte = new Player("Matt Forte", 22, 90);
 		
+		Scoreboard scoreboard = new Scoreboard(0, 0);
+		
+		Possession possession = new Possession(true);
+		
+		System.out.println("Time to play a drive of football, good luck!");
 		System.out.println();
-		System.out.println("Week 1's defining play: Pass to Nelson or Cobb?");
-		
+		System.out.println("Do you want to pass or run the ball?");
+		System.out.println("Enter \"P\" for pass or \"R\" for run!");
+
+		do
+		{
 		Scanner choice = new Scanner (System.in);
-		player = choice.next();
-		
-		if (player.equalsIgnoreCase("Nelson") || player.equalsIgnoreCase("Cobb"))
+		passOrRun = choice.next();
+		if (passOrRun.equalsIgnoreCase("P"))
 		{
-			recordW++;
-			System.out.println("Great game! Your current record is " + recordW + "-" + recordL + ".");			
-		}
-		else
-		{
-			recordL++;
-			System.out.println("Tough loss! Your current record is " + recordW + "-" + recordL + ".");
-		}		
-		
-		System.out.println();
-		System.out.println("Week 2's defining play: Pass to Adams or Montgomery?");
-		player = choice.next();
-		
-		if (player.equalsIgnoreCase("Adams"))
-		{
-			recordW++;
-			System.out.println("Great game! Your current record is " + recordW + "-" + recordL + ".");
-		}
-		else
-		{
-			recordL++;
-			System.out.println("Tough loss! Your current record is " + recordW + "-" + recordL + ".");
-		}
-		
-		System.out.println();
-		System.out.println("Week 3's defining play: Pass to Lacy or Starks?");
-		player = choice.next();
-		
-		if (player.equalsIgnoreCase("Lacy"))
-		{
-			recordW++;
-			System.out.println("Great game! Your current record is " + recordW + "-" + recordL + ".");	
-		}
-		else
-		{
-			recordL++;
-			System.out.println("Tough loss! Your current record is " + recordW + "-" + recordL + ".");
-		}		
-		
-		System.out.println();
-		System.out.println("Week 4's defining play: Pass to Rodgers or Quarless?");
-		player = choice.next();
-		
-		if (player.equalsIgnoreCase("Rodgers"))
-		{
-			recordW++;
-			System.out.println("Great game! Your current record is " + recordW + "-" + recordL + ".");	
-		}
-		else
-		{
-			recordL++;
-			System.out.println("Tough loss! Your current record is " + recordW + "-" + recordL + ".");
-		}	
-		
-		System.out.println();
-		System.out.println("Week 5's defining play: Pass to Janis or Cobb?");
-		player = choice.next();
-		
-		if (player.equalsIgnoreCase("Janis") || player.equalsIgnoreCase("Cobb"))
-		{
-			recordW++;
-			System.out.println("Great game! Your current record is " + recordW + "-" + recordL + ".");	
-		}
-		else
-		{
-			recordL++;
-			System.out.println("Tough loss! Your current record is " + recordW + "-" + recordL + ".");
-		}	
-		
-		System.out.println();
-		System.out.println("Week 6's defining play: Pass to Kuhn or Ripkowski?");
-		player = choice.next();
-		
-		if (player.equalsIgnoreCase("Kuhn"))
-		{
-			recordW++;
-			System.out.println("KUUUUUUUUUUUUHN!!!");
-			System.out.println("Great game! Your current record is " + recordW + "-" + recordL + ".");	
-		}
-		else
-		{
-			recordL++;
-			System.out.println("Tough loss! Your current record is " + recordW + "-" + recordL + ".");
-		}	
-		
-		System.out.println();
-		System.out.println("Week 7's defining play: Pass to Jones or Abbrederis?");
-		player = choice.next();
-		
-		if (player.equalsIgnoreCase("Jones"))
-		{
-			recordW++;
-			System.out.println("Great game! Your current record is " + recordW + "-" + recordL + ".");
-		}
-		else
-		{
-			recordL++;
-			System.out.println("Tough loss! Your current record is " + recordW + "-" + recordL + ".");
-		}	
-		
-		System.out.println();
-		System.out.println("Week 8's defining play: Pass to Perillo or Backman?");
-		player = choice.next();
-		
-		if (player.equalsIgnoreCase("Perillo"))
-		{
-			recordW++;
-			System.out.println("Great game! Your current record is " + recordW + "-" + recordL + ".");
-		}
-		else
-		{
-			recordL++;
-			System.out.println("Tough loss! Your current record is " + recordW + "-" + recordL + ".");
-		}
+			System.out.println("You chose to pass the ball!");
+			chance = Rodgers.PassAndCatch(Rodgers, Nelson);
 			
-			System.out.println();
-			System.out.println("Week 9's defining play: Pass to Nelson, Cobb, or Jones?");
-			player = choice.next();
-			
-			switch(player)
+			if (chance > 95)
 			{
-				case "Nelson":
-					recordW++;
-					System.out.println("Great game! Your current record is " + recordW + "-" + recordL + ".");
-					break;
-				case "Cobb":
-					recordL++;
-					System.out.println("Tough loss! Your current record is " + recordW + "-" + recordL + ".");
-					break;
-				case "Jones":
-					recordL++;
-					System.out.println("Tough loss! Your current record is " + recordW + "-" + recordL + ".");
-					break;
-				default:
-					recordL++;
-					System.out.println("Tough loss! Your current record is " + recordW + "-" + recordL + ".");
-					break;
-					
+				possession.Touchdown(scoreHome);
+				break;
 			}
-			
-			System.out.println();
-			System.out.println("Week 10's defining play: Pass to Adams, Montgomery, or Janis?");
-			player = choice.next();
-			
-			switch(player)
+			else if  (chance > 85)
 			{
-				case "Adams":
-					recordW++;
-					System.out.println("Great game! Your current record is " + recordW + "-" + recordL + ".");
-					break;
-				case "Janis":
-					recordW++;
-					System.out.println("Great game! Your current record is " + recordW + "-" + recordL + ".");
-					break;
-				case "Montgomery":
-					recordL++;
-					System.out.println("Tough loss! Your current record is " + recordW + "-" + recordL + ".");
-					break;
-				default:
-					recordL++;
-					System.out.println("Tough loss! Your current record is " + recordW + "-" + recordL + ".");
-					break;
+				possession.YardsGained(20);
 			}
-			
-			System.out.println();
-			System.out.println("Week 11's defining play: Pass to Lacy, Starks, or Kuhn?");
-			player = choice.next();
-			
-			switch(player)
+			else if (chance > 65)
 			{
-				case "Starks":
-					recordW++;
-					System.out.println("Great game! Your current record is " + recordW + "-" + recordL + ".");
-					break;
-				case "Lacy":
-					recordL++;
-					System.out.println("Tough loss! Your current record is " + recordW + "-" + recordL + ".");
-					break;
-				case "Kuhn":
-					recordL++;
-					System.out.println("Tough loss! Your current record is " + recordW + "-" + recordL + ".");
-					break;
-				default:
-					recordL++;
-					System.out.println("Tough loss! Your current record is " + recordW + "-" + recordL + ".");
-					break;
+				possession.YardsGained(10);
 			}
-			
-			System.out.println();
-			System.out.println("Week 12's defining play: Pass to Rodgers, Perillo, or Quarless?");
-			player = choice.next();
-			
-			switch(player)
+			else if (chance > 55)
 			{
-				case "Rodgers":
-					recordW++;
-					System.out.println("Great game! Your current record is " + recordW + "-" + recordL + ".");
-					break;
-				case "Quarless":
-					recordW++;
-					System.out.println("Great game! Your current record is " + recordW + "-" + recordL + ".");
-					break;
-				case "Perillo":
-					recordL++;
-					System.out.println("Tough loss! Your current record is " + recordW + "-" + recordL + ".");
-					break;
-				default:
-					recordL++;
-					System.out.println("Tough loss! Your current record is " + recordW + "-" + recordL + ".");
-					break;
-			}
-			
-			System.out.println();
-			System.out.println("Week 13's defining play: Pass to Nelson, Jones, or Abbrederis?");
-			player = choice.next();
-			
-			switch(player)
-			{
-				case "Abbrederis":
-					recordW++;
-					System.out.println("Great game! Your current record is " + recordW + "-" + recordL + ".");
-					break;
-				case "Nelson":
-					recordL++;
-					System.out.println("Tough loss! Your current record is " + recordW + "-" + recordL + ".");
-					break;
-				case "Jones":
-					recordL++;
-					System.out.println("Tough loss! Your current record is " + recordW + "-" + recordL + ".");
-					break;
-				default:
-					recordL++;
-					System.out.println("Tough loss! Your current record is " + recordW + "-" + recordL + ".");
-					break;
-			}
-			
-			System.out.println();
-			System.out.println("Week 14's defining play: Pass to Janis, Rodgers, or Starks?");
-			player = choice.next();
-			
-			switch(player)
-			{
-				case "Janis":
-					recordW++;
-					System.out.println("Great game! Your current record is " + recordW + "-" + recordL + ".");
-					break;
-				case "Rodgers":
-					recordW++;
-					System.out.println("Great game! Your current record is " + recordW + "-" + recordL + ".");
-					break;
-				case "Starks":
-					recordL++;
-					System.out.println("Tough loss! Your current record is " + recordW + "-" + recordL + ".");
-					break;
-				default:
-					recordL++;
-					System.out.println("Tough loss! Your current record is " + recordW + "-" + recordL + ".");
-					break;
-			}
-			
-			System.out.println();
-			System.out.println("Week 15's defining play: Pass to Adams, Starks, or Quarless?");
-			player = choice.next();
-			recordL++;
-			System.out.println("Tough loss! Your current record is " + recordW + "-" + recordL + ".");
-			
-			System.out.println();
-			System.out.println("Week 16's defining play: Pass to Nelson, Lacy, Rodgers, or Kuhn?");
-			player = choice.next();
-			
-			if (player.equalsIgnoreCase("Nelson") || player.equalsIgnoreCase("RLacy") || player.equalsIgnoreCase("Rodgers") || player.equalsIgnoreCase("Kuhn"))
-			{
-				recordW++;
-				System.out.println("Great game! Your current record is " + recordW + "-" + recordL + ".");	
+				Nelson.Drop("Jordy Nelson");
 			}
 			else
 			{
-				recordL++;
-				System.out.println("Tough loss! Your current record is " + recordW + "-" + recordL + ".");
-			}	
+				possession.Interception();
+				break;
+			}
+		}
+		else if (passOrRun.equalsIgnoreCase("R"))
+		{
+			System.out.println("You chose to run the ball!");
+			chance = Lacy.Run(Lacy);
 			
-			System.out.println();
-			System.out.println("You finished your rookie season with a record of " + recordW + "-" + recordL + "!");
-			System.out.println();
-			
-			if (recordW > 8)
+			if (chance > 95)
 			{
-				System.out.println("Congrats, you made the playoffs!!!");
+				possession.Touchdown(scoreHome);
+				break;
+			}
+			else if (chance > 85)
+			{
+				possession.YardsGained(20);
+			}
+			else if (chance > 65)
+			{
+				possession.YardsGained(10);
+			}
+			else if (chance > 55)
+			{
+				possession.YardsGained(0);
 			}
 			else
 			{
-				System.out.println("Sorry, you just missed the playoffs! Better luck next season.");
+				possession.Fumble("Eddie Lacy");
+				break;
 			}
-			choice.close();
+		}
+		else
+		{
+			System.out.println("Oops! Looks like an invalid option, please try again!");
+		}
+		} while(!passOrRun.equalsIgnoreCase("P") || !passOrRun.equalsIgnoreCase("R"));	
+		
+		System.out.println("Great game! Press \"Play\" to play again!");
+		
+		//Return statements not printing
+		//How access and alter a variable from a different class
+		//Better way to exit if/else loop other than "break;"
+		
+		//More functionality is here, just need to add to main
 	}
 }
+
